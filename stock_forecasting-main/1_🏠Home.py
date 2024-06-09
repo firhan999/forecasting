@@ -21,7 +21,20 @@ def main():
    
     # Aplikasi Streamlit
     st.title('PREDIKSI ANALISIS LSTM PADA SAHAM KKGI.JK')
-
+# Terapkan CSS kustom untuk warna latar belakang
+    st.markdown(
+        """
+        <style>
+        body {
+            background-color: #0E1117;
+        }
+        .stApp {
+            background-color: #0E1117;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     # Fetch data from Yahoo Finance for KKGI.JK from 2021
     ticker = "KKGI.JK"
     data = yf.download(tickers=ticker, period='4y')
