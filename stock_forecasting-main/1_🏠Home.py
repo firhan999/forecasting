@@ -21,7 +21,7 @@ def main():
    # Load custom styles
 try:
     with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     # Aplikasi Streamlit
     st.title('PREDIKSI ANALISIS LSTM PADA SAHAM KKGI.JK')
     # Fetch data from Yahoo Finance for KKGI.JK from 2021
