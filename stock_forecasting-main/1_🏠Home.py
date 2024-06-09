@@ -21,7 +21,7 @@ def main():
    
     # Aplikasi Streamlit
     st.title('PREDIKSI ANALISIS LSTM PADA SAHAM KKGI.JK')
-# Terapkan CSS kustom untuk warna latar belakang
+# Terapkan CSS kustom untuk warna latar belakang dan pembatas
     st.markdown(
         """
         <style>
@@ -30,6 +30,15 @@ def main():
         }
         .stApp {
             background-color: #0E1117;
+        }
+        .metric-container {
+            background-color: #1E2130;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .metric-container .stMetric {
+            color: white;
         }
         </style>
         """,
