@@ -13,8 +13,7 @@ st.set_page_config(
     page_title='LSTM FORECAST'
 )
 
-with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 
 # Function to create LSTM model
 def create_LSTM_model(time_step, epochs, batch_size, optimizer):
