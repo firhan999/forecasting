@@ -412,5 +412,5 @@ try:
         st.write("Open, High, Low Table")
         st.dataframe(data[['Open', 'High', 'Low']])
         
-if __name__ == '__main__':
+    if __name__ == '__main__':
     main()
