@@ -19,8 +19,11 @@ def main():
     # Set page configuration
     st.set_page_config(layout="wide", page_title="KKGI.JK DashBoard For LSTM")
    # Load custom styles
-    with open('style.css') as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    try:
+        with open('style.css') as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.error("File 'style.css' tidak ditemukan. Pastikan file tersebut berada di direktori yang sama dengan script Streamlit.")
 
     # Aplikasi Streamlit
     st.title('PREDIKSI ANALISIS LSTM PADA SAHAM KKGI.JK')
