@@ -23,7 +23,6 @@ def main():
     st.title('PREDIKSI ANALISIS LSTM PADA SAHAM KKGI.JK')
     # Load custom styles
     with open('style.css') as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     # Fetch data from Yahoo Finance for KKGI.JK from 2021
     ticker = "KKGI.JK"
     data = yf.download(tickers=ticker, period='4y')
