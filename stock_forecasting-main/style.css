@@ -1,3 +1,18 @@
+body {
+    background-color: #0E1117;
+}
+.stApp {
+    background-color: #0E1117;
+}
+.metric-container {
+    background-color: #1E2130;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.metric-container .stMetric {
+    color: white;
+}
 
 h1 {
   text-align: center;
