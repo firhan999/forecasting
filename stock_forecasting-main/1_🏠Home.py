@@ -21,29 +21,9 @@ def main():
    
     # Aplikasi Streamlit
     st.title('PREDIKSI ANALISIS LSTM PADA SAHAM KKGI.JK')
-# Terapkan CSS kustom untuk warna latar belakang dan pembatas
-    st.markdown(
-        """
-        <style>
-        body {
-            background-color: #0E1117;
-        }
-        .stApp {
-            background-color: #0E1117;
-        }
-        .metric-container {
-            background-color: #1E2130;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .metric-container .stMetric {
-            color: white;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    # Load custom styles
+    with open('style.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     # Fetch data from Yahoo Finance for KKGI.JK from 2021
     ticker = "KKGI.JK"
     data = yf.download(tickers=ticker, period='4y')
