@@ -19,7 +19,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 # URL gambar yang ingin ditampilkan
-image_url = "https://www.shutterstock.com/image-vector/longterm-memory-vector-illustration-word-cloud-2072413550"
+image_url = "https://miro.medium.com/v2/resize:fit:720/format:webp/1*ARetFl4fJOVh1VWF8GuDoA.jpeg"
 
 
 # Menampilkan gambar dari URL
