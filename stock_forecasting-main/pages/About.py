@@ -19,7 +19,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 # URL gambar yang ingin ditampilkan
-image_url = "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png"
+image_url = "https://www.shutterstock.com/image-vector/longterm-memory-vector-illustration-word-cloud-2072413550"
 
 
 # Menampilkan gambar dari URL
