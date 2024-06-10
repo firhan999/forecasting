@@ -18,15 +18,7 @@ from PIL import Image
 def main():
     # Set page configuration
     st.set_page_config(layout="wide", page_title="KKGI.JK DashBoard For LSTM")   
-    css_path = os.path.join(os.getcwd(), 'style.css')
-       # Load custom styles
-    try:
-        with open(css_path) as f:
-            css = f.read()
-            st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
-    except FileNotFoundError:
-        st.error(f'File style.css tidak ditemukan di {css_path}')
-        
+          
     # Aplikasi Streamlit
     st.title('PREDIKSI ANALISIS LSTM PADA SAHAM KKGI.JK')
     # Fetch data from Yahoo Finance for KKGI.JK from 2021
