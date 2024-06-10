@@ -18,7 +18,9 @@ from PIL import Image
 def main():
     # Set page configuration
     st.set_page_config(layout="wide", page_title="KKGI.JK DashBoard For LSTM")   
-          
+    # Load custom styles
+    with open('ss.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     # Aplikasi Streamlit
     st.title('PREDIKSI ANALISIS LSTM PADA SAHAM KKGI.JK')
     # Fetch data from Yahoo Finance for KKGI.JK from 2021
