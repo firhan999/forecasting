@@ -18,10 +18,11 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
+# URL gambar yang ingin ditampilkan
+image_url = "https://www.example.com/path/to/your/image.jpg"
 
-# Menampilkan gambar arsitektur LSTM di tengah atas
-st.markdown('<img src="https://bisa.ai/upload/portofolio/NDk0/LSTM_Work.png" class="center-image" alt="Arsitektur LSTM">', unsafe_allow_html=True)
-
+# Menampilkan gambar dari URL
+st.image(image_url, caption='Ini adalah contoh gambar dari internet', use_column_width=True)
 st.markdown('<h1 class="custom-title">Tentang Aplikasi Ini</h1>', unsafe_allow_html=True)
 
 st.markdown("""
