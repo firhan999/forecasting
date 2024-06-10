@@ -19,7 +19,8 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 # URL gambar yang ingin ditampilkan
-image_url = "https://www.example.com/path/to/your/image.jpg"
+image_url = "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png"
+
 
 # Menampilkan gambar dari URL
 st.image(image_url, caption='Ini adalah contoh gambar dari internet', use_column_width=True)
