@@ -20,10 +20,13 @@ st.markdown("""
     """, unsafe_allow_html=True)
 # URL gambar yang ingin ditampilkan
 image_url = "https://miro.medium.com/v2/resize:fit:720/format:webp/1*ARetFl4fJOVh1VWF8GuDoA.jpeg"
+st.markdown(
+    f'<div style="display: flex; justify-content: center;"><img src="{image_url}" style="width: 720px;"></div>',
+    unsafe_allow_html=True
+)
 
 
 # Menampilkan gambar dari URL
-st.image(image_url, caption='LSTM With Tensor', width=720)
 st.markdown('<h1 class="custom-title">Tentang Aplikasi Ini</h1>', unsafe_allow_html=True)
 
 st.markdown("""
