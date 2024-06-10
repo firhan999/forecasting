@@ -14,16 +14,13 @@ import numpy as np
 import plotly.express as px
 from datetime import datetime, date
 from PIL import Image
-# Load custom styles
-try:
-    with open('style.css') as f:
-        css = f.read()
-        st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
-except FileNotFoundError:
-    st.error('File style.css tidak ditemukan.')
+
 def main():
     # Set page configuration
-    st.set_page_config(layout="wide", page_title="KKGI.JK DashBoard For LSTM")        
+    st.set_page_config(layout="wide", page_title="KKGI.JK DashBoard For LSTM")      
+        # Load custom styles
+    with open('style.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     # Aplikasi Streamlit
     st.title('PREDIKSI ANALISIS LSTM PADA SAHAM KKGI.JK')
     # Fetch data from Yahoo Finance for KKGI.JK from 2021
