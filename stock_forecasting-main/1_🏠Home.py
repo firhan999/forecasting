@@ -56,7 +56,7 @@ def main():
     ymax = round(y[-1], 1)
 
     layout = {
-        "plot_bgcolor": "rgba(0, 0, 0, 0)",
+        "plot_bgcolor": "green",
         "paper_bgcolor": "rgba(0, 0, 0, 0)",
         "yaxis": {"visible": False},
         "xaxis": {
