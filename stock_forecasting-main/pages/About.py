@@ -23,7 +23,7 @@ image_url = "https://miro.medium.com/v2/resize:fit:720/format:webp/1*ARetFl4fJOV
 
 
 # Menampilkan gambar dari URL
-st.image(image_url, caption='Ini adalah contoh gambar dari internet', use_column_width=True)
+st.image(image_url, caption='LSTM With Tensor', width=720)
 st.markdown('<h1 class="custom-title">Tentang Aplikasi Ini</h1>', unsafe_allow_html=True)
 
 st.markdown("""
