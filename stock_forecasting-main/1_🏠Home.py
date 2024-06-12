@@ -372,7 +372,7 @@ def main():
     st.info('''
         Saham KKGI.JK adalah saham dari perusahaan PT Resource Alam Indonesia Tbk yang terdaftar di Bursa Efek Indonesia (BEI) dengan kode ticker KKGI. Berikut adalah beberapa informasi tentang perusahaan dan saham ini:
         * **Nama Perusahaan:** PT Resource Alam Indonesia Tbk.
-        * **Kode Saham:** KKGI.mmmm
+        * **Kode Saham:** KKGI.,,lknjjkjnjnj
         * **Industri** Pertambangan.
         * **Produk Utama:** Nikel.
         * **Deskripsi Singkat:** PT Resource Alam Indonesia Tbk adalah perusahaan yang bergerak di bidang pertambangan, terutama berfokus pada penambangan dan perdagangan Nikel. Selain Nikel , perusahaan ini juga memiliki usaha di bidang energi dan mineral lainnya.
