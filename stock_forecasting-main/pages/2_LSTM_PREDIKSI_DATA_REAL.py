@@ -13,9 +13,6 @@ st.set_page_config(
     page_title='LSTM FORECAST'
 )
 
-with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
 # Fungsi untuk membuat model LSTM
 def buat_model_LSTM(time_step, epochs, batch_size, optimizer):
     # Langkah 1: Memuat Data dari Yahoo Finance
@@ -126,4 +123,4 @@ if train_button:
             legend_title='Legenda',
             template='plotly_white'
         )
-        st.plotly_chart(fig_combined)
+     
