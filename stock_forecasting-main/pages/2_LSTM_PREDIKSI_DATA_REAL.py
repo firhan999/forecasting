@@ -109,6 +109,7 @@ if train_button:
     with z1:
         # Grafik garis untuk perbandingan data
         fig = px.line(df, x='Tanggal', y=['Data Real', 'Prediksi Latih', 'Prediksi Uji'], title='Data Real dan Hasil Prediksi')
+        fig.update_xaxes(tickformat="%Y-%m-%d")
         st.plotly_chart(fig)
 
         # Grafik garis dengan scatter plot dan area
@@ -123,4 +124,9 @@ if train_button:
             legend_title='Legenda',
             template='plotly_white'
         )
+        fig_combined.update_xaxes(tickformat="%Y-%m-%d")
         st.plotly_chart(fig_combined)
+
+    with z2:
+        st.metric(label="Rata-rata Kesalahan Latih", value=f"{rata_kesalahan_latih:.2f}")
+        st.metric(label="Rata-rata Kesalahan Uji", value=f"{rata_kesalahan_uji:.2f}")
