@@ -123,4 +123,8 @@ if train_button:
             legend_title='Legenda',
             template='plotly_white'
         )
-     
+        st.plotly_chart(fig_combined)
+
+    with z2:
+        st.metric(label="Rata-rata Kesalahan Latih", value=f"{rata_kesalahan_latih:.2f}")
+        st.metric(label="Rata-rata Kesalahan Uji", value=f"{rata_kesalahan_uji:.2f}")
