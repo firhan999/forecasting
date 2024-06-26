@@ -16,7 +16,7 @@ st.set_page_config(
 # Fungsi untuk membuat model LSTM
 def buat_model_LSTM(time_step, epochs, batch_size, optimizer):
     # Langkah 1: Memuat Data dari Yahoo Finance
-    data = yf.download('KKGI.JK', start='2020-01-01', end=datetime.now())
+    data = yf.download('KKGI.JK', start='2020-01-01', end="2024-06-24")
 
     # Langkah 2: Praproses Data
     scaler = MinMaxScaler(feature_range=(0, 1))
