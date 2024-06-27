@@ -86,7 +86,7 @@ with st.sidebar.form(key='params_form'):
     optimizers = ['adam', 'adamax', 'sgd', 'rmsprop']
     optimizer = st.selectbox('Optimizer', optimizers, key='optimizer_selectbox')
     time_step = st.number_input('Lookback', min_value=1, max_value=500, value=164, step=1)
-    epochs_value = st.number_input('Epochs', min_value=1, value=100)
+    epochs_value = st.number_input('Epochs', min_value=1, value=150)
     batch_size_value = st.number_input('Batch Size', min_value=1, value=32)
     train_button = st.form_submit_button('Train Model')
 
