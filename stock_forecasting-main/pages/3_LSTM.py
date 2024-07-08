@@ -27,7 +27,7 @@ st.set_page_config(
 )
 
 
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    
 
 def visualize_training_data(data_train):
     st.subheader('Training data Visualization')
