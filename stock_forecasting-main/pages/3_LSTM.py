@@ -26,7 +26,7 @@ st.set_page_config(
     page_title='LSTM FORECAST'
 )
 
-with open('style.css') as f:
+
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 def visualize_training_data(data_train):
