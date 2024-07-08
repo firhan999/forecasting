@@ -10,6 +10,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import tensorflow as tf
 import random
+from datetime import datetime, timedelta
 
 # Set seed for reproducibility
 seed = 42
@@ -25,6 +26,8 @@ st.set_page_config(
     page_title='LSTM FORECAST'
 )
 
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 def visualize_training_data(data_train):
     st.subheader('Training data Visualization')
@@ -54,51 +57,39 @@ def evaluate_model(model, X_train, Y_train, scaler):
 
     return rmse, mae, mape, mse, train_predictions
 
-# Adding custom CSS to style the text
-st.markdown(
-    """
+# Define the custom CSS for larger text and center alignment
+st.markdown("""
     <style>
     .params_text {
-        font-size: 24px;
+        font-size: 30px;
         text-align: center;
-        color: inherit; /* Keeps the same color as other text */
-    }
-    .divider {
-        width: 100%;
-        border-top: 1px solid #e0e0e0;
-        margin: 10px 0;
     }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+    """, unsafe_allow_html=True)
 
-with st.form(key='params_form'):
-        st.markdown('<p class="params_text">Forecasting Dengan LSTM</p>', unsafe_allow_html=True)
-        st.markdown('<hr class="divider">', unsafe_allow_html=True)
-        st.divider()
+# Sidebar for input parameters
+st.sidebar.title('Model Parameters')
 
-        optimizers = ['adam', 'adamax', 'sgd', 'rmsprop'] 
-        optimizer = st.selectbox('Optimizer', optimizers, key='symbol_selectbox')
-        
-        n_lookback, n_forecast = st.columns(2)
-        with n_lookback:
-            n_lookback = st.number_input('Lookback', min_value=1, max_value=500, value=164, step=1)
-        with n_forecast:
-            n_forecast = st.number_input('Forecast', min_value=10, max_value=730, value=365, step=1, key='period_no_input')
-        
-        epochs, batch_size = st.columns(2)
-        with epochs:
-            epochs = st.number_input('Epochs', min_value=1, value=200)
-        with batch_size:
-             batch_size = st.number_input('Batch Size', min_value=1, value=32)
+optimizers = ['adam', 'adamax', 'sgd', 'rmsprop']
+optimizer = st.sidebar.selectbox('Optimizer', optimizers, index=0)
 
-        st.markdown('')
-        train_button = st.form_submit_button('Train Model')
-        st.markdown('')
+n_lookback = st.sidebar.number_input('Lookback', min_value=1, max_value=500, value=164, step=1)
+n_forecast = st.sidebar.number_input('Forecast', min_value=10, max_value=730, value=365, step=1)
+
+epochs = st.sidebar.number_input('Epochs', min_value=1, value=100)
+batch_size = st.sidebar.number_input('Batch Size', min_value=1, value=32)
+
+st.sidebar.markdown('---')
+
+# Create the form
+train_button = st.sidebar.button('Train Model')
 
 if train_button:
-    data = yf.download(tickers='KKGI.JK', period='4y')
+    ticker = "KKGI.JK"
+    start_date = "2021-01-01"
+    end_date = "2024-06-24"
+    data = yf.download(tickers=ticker, start=start_date, end=end_date)
+                       
     scaler = MinMaxScaler(feature_range=(0, 1))
     y = data['Close'].values.reshape(-1, 1)
     y_scaled = scaler.fit_transform(y)
@@ -109,8 +100,8 @@ if train_button:
     Y_train, Y_test = Y[:train_size], Y[train_size:]
 
     model = Sequential([
-        LSTM(units=50, return_sequences=True, input_shape=(n_lookback, 1)),
-        LSTM(units=50),
+        LSTM(50, return_sequences=True, input_shape=(n_lookback, 1)),
+        LSTM(50, return_sequences=False),
         Dense(n_forecast)
     ])
     model.compile(optimizer=optimizer, loss='mean_squared_error')
@@ -160,7 +151,8 @@ if train_button:
     # Line chart of Actual vs Forecast
     fig = px.line(results.reset_index(), x='Date', y=['Actual', 'Forecast'], title='Actual vs Forecast')
     st.plotly_chart(fig, use_container_width=True)
-# Evaluasi model
+
+    # Evaluasi model
     rmse, mae, mape, mse, _ = evaluate_model(model, X, Y, scaler)
 
     # Mengonversi nilai-nilai menjadi persentase
@@ -194,11 +186,11 @@ if train_button:
             st.markdown('<div class="box-shadow">', unsafe_allow_html=True)
             st.markdown(f"**MSE**: {mse}")
             st.markdown('</div>', unsafe_allow_html=True)
-
+            
     # Membagi layar menjadi dua kolom
     col1, col2 = st.columns(2)
 
-        # Menampilkan hasil pada kolom pertama
+    # Menampilkan hasil pada kolom pertama
     with col1:
         st.subheader("Forecast Data")
         st.write(results[results['Forecast'].notna()])
@@ -207,31 +199,29 @@ if train_button:
     with col2:
         st.subheader("Description of Results")
         st.write(results.describe())
-        # Menampilkan grafik dengan karakteristik high dan low di bawah deskripsi hasil
-       
 
+    # Menampilkan grafik dengan karakteristik high dan low di bawah deskripsi hasil
     st.subheader("Forecast Characteristics")
 
-        # Membuat plot dengan karakteristik high dan low
+    # Membuat plot dengan karakteristik high dan low
     fig_characteristics = go.Figure()
-# Filter high and low forecasts
+    # Filter high and low forecasts
     high_forecasts = results[results['Characteristic'] == 'high']
     low_forecasts = results[results['Characteristic'] == 'low']
-
-# Menggabungkan data prediksi karakteristik high dan low
+    # Menggabungkan data prediksi karakteristik high dan low
     combined_forecasts = pd.concat([high_forecasts, low_forecasts], axis=0).sort_index()
 
-# Plot gabungan prediksi sebagai satu garis
+    # Plot gabungan prediksi sebagai satu garis
     if not combined_forecasts.empty:
         fig_characteristics.add_trace(go.Scatter(x=combined_forecasts.index, y=combined_forecasts['Forecast'],
-                                             mode='lines', line=dict(color='purple'), name='Forcast'))
+                                                 mode='lines', line=dict(color='blue'), name='Forecast'))
 
-# Menambahkan garis lurus untuk mean
+    # Menambahkan garis lurus untuk mean
     fig_characteristics.add_trace(go.Scatter(x=results.index, y=[mean_value]*len(results.index),
-                                         mode='lines', name='Mean', line=dict(color='green', width=2)))
+                                             mode='lines', name='Mean', line=dict(color='green', width=2)))
 
     fig_characteristics.update_layout(title='Forecast Grafik chart', xaxis_title='Date',
-                                  yaxis_title='Forecast', showlegend=True,
-                                  xaxis=dict(range=['2024-06-01', '2025-07-01']))
+                                      yaxis_title='Forecast', showlegend=True,
+                                      xaxis=dict(range=['2024-06-01', '2025-07-01']))
 
     st.plotly_chart(fig_characteristics, use_container_width=True)
